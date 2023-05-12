@@ -9,7 +9,6 @@ import StudentDomen.User;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        User u1 = new User("Сергей","Иванов",25);
         Student s1 = new Student("Сергей", "Иванов", 22, (long)101);
         Student s2 = new Student("Андрей", "Сидоров", 22, (long)111);
         Student s3 = new Student("Иван", "Петров", 22, (long)121);
@@ -61,6 +60,5 @@ public class App {
             System.out.println("NumberOfStream = " + stream.getNumOfStream() + "\n");
             System.out.println(groups);
         }
-
     }
 }
