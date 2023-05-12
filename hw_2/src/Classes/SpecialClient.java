@@ -69,4 +69,14 @@ public class SpecialClient extends Actor {
     public Actor getActor() {
         return this;
     }
+
+    /**
+     * возврат товара VIP клиенту
+     * @param orderId id товара
+     */
+    @Override
+    public void returnOrder(int orderId) {
+        System.out.printf("Номер позиции возврата: %d\n", orderId);
+        super.isReturnOrder = true;
+    }
 }

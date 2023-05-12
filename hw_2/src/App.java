@@ -30,8 +30,11 @@ public class App {
        market.acceptToMarket(item5);
        market.update();
 
+       market.acceptToMarket(item1);
        market.acceptToMarket(item4);
        market.acceptToMarket(item5);
-       market.returnOrder();
+       item1.getActor().returnOrder(1);
+       item4.getActor().returnOrder(2);
+       item5.getActor().returnOrder(3);
     }
 }

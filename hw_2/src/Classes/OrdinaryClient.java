@@ -1,5 +1,8 @@
 package Classes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /** 
  * Наследуемый класс обычного клиента
 */
@@ -60,5 +63,15 @@ public class OrdinaryClient extends Actor {
     @Override
     public Actor getActor() {
         return this;
+    }
+
+    /**
+     * возврат товара обычному клиенту
+     * @param orderId id товара
+     */
+    @Override
+    public void returnOrder(int orderId) {
+        System.out.println("Невозможно вернуть товар " + orderId + " клиенту " + getActor().getName());
+        super.isReturnOrder = false;
     }
 }

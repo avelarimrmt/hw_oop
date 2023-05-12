@@ -79,4 +79,14 @@ public class PromotionalClient extends Actor{
     public Actor getActor() {
         return this;
     }
+
+    /**
+     * возврат товара акционному клиенту
+     * @param orderId id товара
+     */
+    @Override
+    public void returnOrder(int orderId) {
+        System.out.printf("Номер позиции возврата: %d\n", orderId);
+        super.isReturnOrder = true;
+    }
 }
