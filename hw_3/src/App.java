@@ -5,7 +5,6 @@ import java.util.List;
 import StudentDomen.Student;
 import StudentDomen.StudentGroup;
 import StudentDomen.StudentStream;
-import StudentDomen.User;
 
 public class App {
     public static void main(String[] args) throws Exception {
