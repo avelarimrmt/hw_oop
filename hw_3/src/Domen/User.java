@@ -1,4 +1,4 @@
-package StudentDomen;
+package Domen;
 
 /** 
  * Базовый класс пользователя

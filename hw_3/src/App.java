@@ -3,10 +3,12 @@ import java.util.Collections;
 import java.util.List;
 
 import Controllers.EmployeeController;
-import StudentDomen.Employee;
-import StudentDomen.Student;
-import StudentDomen.StudentGroup;
-import StudentDomen.StudentStream;
+import Domen.Employee;
+import Domen.Student;
+import Domen.StudentGroup;
+import Domen.StudentStream;
+import Domen.Teacher;
+import Service.AverageAge;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -50,11 +52,27 @@ public class App {
         //     System.out.println(groups);
         // }
 
-        Employee peron1 = new Employee("Джохангир", "Олег", 55, 110);
-        Student s1 = new Student("Сергей", "Иванов", 22, (long)101);
+        Employee emp1 = new Employee("Иванов", "Олег", 55, 110);
+        Student st1 = new Student("Сергей", "Иванов", 22, (long)101);
+        Student st2 = new Student("Андрей", "Сидоров", 20, (long)111);
+        Student st3 = new Student("Иван", "Петров", 18, (long)121);
+        Teacher tch1 = new Teacher("Игорь", "Иванов", 26, 301, "кандидат наук");
+        Teacher tch2 = new Teacher("Даша", "Цветкова", 42, 171, "доцент");
+        Employee emp2 = new Employee("Лена", "Незабудкина", 45, 104);
+
+        List<Student> students = new ArrayList<>();
+        students.add(st1);
+        students.add(st2);
+        students.add(st3);
+        List<Employee> employees  = new ArrayList<>();
+        employees.add(emp1);
+        employees.add(emp2);
+        List<Teacher> teachers  = new ArrayList<>();
+        teachers.add(tch1);
+        teachers.add(tch2);
 
         //EmployeeController contrEmp = new EmployeeController();
-        EmployeeController.paySalary(peron1);
+        EmployeeController.paySalary(emp1);
         //contrEmp.paySalary(s1);
 
         Integer studHour[] = {124,234,231,1,45};
@@ -63,8 +81,8 @@ public class App {
         Double emplSalary[] = {12555.23,34213.5,10000.0};
         System.out.println(EmployeeController.mean(emplSalary));
 
-        //System.out.println(u1);
-        //System.out.println(s1);
-        //System.out.println(group);
+        AverageAge.getAverageAge(students);
+        AverageAge.getAverageAge(employees);
+        AverageAge.getAverageAge(teachers);
     }
 }
