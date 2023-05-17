@@ -1,16 +1,13 @@
 package View;
 
 import java.util.List;
-import java.util.Scanner;
 
-import Controller.iGetView;
 import Model.Student;
 
-/** Базовый класс представления данных */
-public class View implements iGetView {
-    /** вывести всех студентов 1 параметр
-     * @param students список студентов
-     */
+/** Базовый класс представления данных (на русском языке)*/
+public class View extends GeneralView {
+    /** переопределение вывода всех студентов на русском языке*/
+    @Override
     public void printAllStudents(List<Student> students) {
         System.out.println("-------вывод списка студентов-------");
 
@@ -19,14 +16,5 @@ public class View implements iGetView {
         }
 
         System.out.println("-------конец списка-------");
-    }
-
-    /** позволяет считывать данные с консоли
-     * @param message сообщеник
-     */
-    public String prompt (String message) {
-        Scanner in = new Scanner(System.in);
-        System.out.println(message);
-        return in.nextLine();
     }
 }

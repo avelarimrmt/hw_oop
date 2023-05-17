@@ -5,7 +5,7 @@ import java.util.List;
 
 import Model.Student;
 
-/** Базовый класс контроллера*/
+/** Базовый класс контроллера(взаимодействие с моделью и представлением)*/
 public class Controller {
     /** список студентов*/
     private List<Student> students;
@@ -15,6 +15,9 @@ public class Controller {
 
     /** экземпляр модели*/
     private iGetModel model;
+
+    /** русский язык или нет*/
+    private boolean isRus;
     
     /**
      * конструктор контроллера 2 параметра
@@ -57,14 +60,26 @@ public class Controller {
     public void run() {
         Commands com = Commands.NONE;
         boolean getNewIteration = true;
+        
+        String entCom = "";
+        String extProg = "";
+
+
+        if (isRus) {
+            entCom = "Введите команду: ";
+            extProg = "Выход из программы";
+        } else {
+            entCom = "Enter the command: ";
+            extProg = "Exit from the program";
+        }
 
         while (getNewIteration) {
-            String command = view.prompt("Введите команду: ");
+            String command = view.prompt(entCom);
             com = Commands.valueOf(command.toUpperCase());
             switch (com) {
                 case EXIT:
                     getNewIteration = false;
-                    System.out.println("Выход из программы!");
+                    System.out.println(extProg);
                     break;
             
                 case LIST:
@@ -73,5 +88,25 @@ public class Controller {
                     break;
             }
         }
+    }
+
+    /** выбор языка*/
+    public boolean choiceLang() {
+        Commands cmnd = Commands.NONE;
+        
+        String command = view.prompt("RUS OR ENG?: ");
+        cmnd = Commands.valueOf(command.toUpperCase());
+            switch (cmnd) {
+                case RUS:
+                    isRus = true;      
+                    System.out.println("Установлен русский язык");
+                    break;
+            
+                case ENG:
+                    isRus = false;
+                    System.out.println("Choice english language");
+                    break;
+            }
+        return isRus;
     }
 }

@@ -9,6 +9,7 @@ import Model.Model;
 
 import Model.Student;
 import View.View;
+import View.ViewEng;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -36,12 +37,20 @@ public class App {
 
         iGetModel model = new Model(listStud);
         iGetModel modelFileRepo = mFileRepo;
-
-
+       
         iGetView view = new View();
         Controller controller = new Controller(view, modelFileRepo);
-        controller.run();
+        boolean isRusLang = controller.choiceLang();
+        
+        if (isRusLang) {
+            view = new View();
+        }
+        else {
+            view = new ViewEng();
+        }
+      
+        Controller control= new Controller(view, modelFileRepo);
 
-        controller.updateView();
+        control.updateView();
     }
 }
