@@ -8,4 +8,5 @@ import Model.Student;
 public interface iGetModel {
     /** получаем список всех студентов*/
     public List<Student> getAllStudents();
+    void deleteStudentFromList(long idStud);
 }

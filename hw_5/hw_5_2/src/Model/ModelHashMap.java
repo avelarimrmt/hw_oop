@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /** Вариант класса Model - хэш-таблица*/
-public class ModelHashMap extends Model{
+public class ModelHashMap extends Model {
     /** хэш-таблица*/
     private HashMap<Long, Student> map;
 
@@ -27,5 +27,15 @@ public class ModelHashMap extends Model{
     public List<Student> getAllStudents() {
         List<Student> list = new ArrayList<Student>(map.values());
         return list;
+    }
+
+    @Override
+    public void deleteStudentFromList(long idStud) {
+        Student student = map.get(idStud);
+        if (student == null) {
+            System.out.println("no results");
+        } else {
+            map.remove(idStud);
+    }
     }
 }

@@ -40,18 +40,16 @@ public class App {
         iGetModel modelHashMap = new ModelHashMap(listStud);
        
         iGetView view = new View();
+        iGetView viewEng = new ViewEng();
         Controller controller = new Controller(view, modelHashMap);
-        boolean isRusLang = controller.choiceLang();
+        controller.choiceLang();
         
-        if (isRusLang) {
-            view = new View();
-        }
-        else {
-            view = new ViewEng();
+        if (controller.getIsRus()) {
+            view = viewEng;
         }
       
-        Controller control= new Controller(view, modelHashMap);
-
-        control.updateView();
+        
+        controller.run();
+        
     }
 }

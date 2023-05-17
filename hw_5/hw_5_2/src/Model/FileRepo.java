@@ -79,4 +79,16 @@ public class FileRepo implements iGetModel{
         readAllStudentsFromFile();
         return students;
     }
+
+    /** переопределение метода удаления студента из списка
+     * @param idStud id студента
+     */
+    @Override
+    public void deleteStudentFromList(long idStud) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getIdStudent() == idStud)
+                students.remove(i);
+                saveAllStudentToFile();
+        }
+    }
 }

@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import Model.Student;
 
@@ -28,6 +29,12 @@ public class Controller {
         this.view = view;
         this.model = model;
         this.students = new ArrayList<>();
+        this.isRus = true;
+    }
+
+    /** какой язык установлен*/
+    public boolean getIsRus() {
+        return isRus;
     }
 
     /** получить список всех студентов из модели*/
@@ -56,42 +63,8 @@ public class Controller {
         // view.printAllStudents(model.getAllStudents());
     }
 
-    /** перехват комманд от пользователя*/
-    public void run() {
-        Commands com = Commands.NONE;
-        boolean getNewIteration = true;
-        
-        String entCom = "";
-        String extProg = "";
-
-
-        if (isRus) {
-            entCom = "Введите команду: ";
-            extProg = "Выход из программы";
-        } else {
-            entCom = "Enter the command: ";
-            extProg = "Exit from the program";
-        }
-
-        while (getNewIteration) {
-            String command = view.prompt(entCom);
-            com = Commands.valueOf(command.toUpperCase());
-            switch (com) {
-                case EXIT:
-                    getNewIteration = false;
-                    System.out.println(extProg);
-                    break;
-            
-                case LIST:
-                    getAllStudents();
-                    updateView();
-                    break;
-            }
-        }
-    }
-
     /** выбор языка*/
-    public boolean choiceLang() {
+    public void choiceLang() {
         Commands cmnd = Commands.NONE;
         
         String command = view.prompt("RUS OR ENG?: ");
@@ -107,6 +80,49 @@ public class Controller {
                     System.out.println("Choice english language");
                     break;
             }
-        return isRus;
+    }
+
+    /** перехват комманд от пользователя*/
+    public void run() {
+        Commands com = Commands.NONE;
+        boolean getNewIteration = true;
+        
+        String entCom = "";
+        String extProg = "";
+        String entIfDel = "";
+
+        if (isRus) {
+            entCom = "Введите команду: ";
+            extProg = "Выход из программы";
+            entIfDel = "Введите ID студента, которого хотите удалить из списка";
+        } else {
+            entCom = "Enter the command: ";
+            extProg = "Exit from the program";
+            entIfDel = "Enter ID of student, ypu want to remove from list";
+        }
+
+        while (getNewIteration) {
+            String command = view.prompt(entCom);
+            com = Commands.valueOf(command.toUpperCase());
+            switch (com) {
+                case EXIT:
+                    getNewIteration = false;
+                    System.out.println(extProg);
+                    break;
+            
+                case LIST:
+                    getAllStudents();
+                    updateView();
+                    break;
+
+                case DELETE:
+                    System.out.println(entIfDel);
+                    Scanner in = new Scanner(System.in);
+                    Long idStud = in.nextLong();
+                    model.deleteStudentFromList(idStud);
+                    updateView();
+                    break;
+            }
+        }
     }
 }
