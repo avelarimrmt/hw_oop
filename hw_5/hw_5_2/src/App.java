@@ -6,7 +6,7 @@ import Controller.iGetModel;
 import Controller.iGetView;
 import Model.FileRepo;
 import Model.Model;
-
+import Model.ModelHashMap;
 import Model.Student;
 import View.View;
 import View.ViewEng;
@@ -37,9 +37,10 @@ public class App {
 
         iGetModel model = new Model(listStud);
         iGetModel modelFileRepo = mFileRepo;
+        iGetModel modelHashMap = new ModelHashMap(listStud);
        
         iGetView view = new View();
-        Controller controller = new Controller(view, modelFileRepo);
+        Controller controller = new Controller(view, modelHashMap);
         boolean isRusLang = controller.choiceLang();
         
         if (isRusLang) {
@@ -49,7 +50,7 @@ public class App {
             view = new ViewEng();
         }
       
-        Controller control= new Controller(view, modelFileRepo);
+        Controller control= new Controller(view, modelHashMap);
 
         control.updateView();
     }
